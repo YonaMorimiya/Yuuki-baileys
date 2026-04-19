@@ -1,11 +1,11 @@
 'use strict';
 
 /**
- * @ryuhan/baileys — CJS wrapper
+ * @yuuki/baileys — CJS wrapper
  *
  * Destructure dan langsung pakai tanpa await ready:
  *
- *   const { makeWASocket, useMultiFileAuthState, Browsers } = require('@ryuhan/baileys');
+ *   const { makeWASocket, useMultiFileAuthState, Browsers } = require('@yuuki/baileys');
  *
  *   async function start() {
  *     const { state, saveCreds } = await useMultiFileAuthState('./auth');
@@ -69,10 +69,10 @@ module.exports.load = _load;
 
 function _wrapFn(name) {
   return async function(...args) {
-    if (_loadError) throw new Error('[ryuhan-baileys] Load failed: ' + _loadError.message);
+    if (_loadError) throw new Error('[yuuki-baileys] Load failed: ' + _loadError.message);
     if (!_mod) await _load();
     const fn = name === 'makeWASocket' ? _mod.default : _mod[name];
-    if (typeof fn !== 'function') throw new Error('[ryuhan-baileys] "' + name + '" bukan fungsi');
+    if (typeof fn !== 'function') throw new Error('[yuuki-baileys] "' + name + '" bukan fungsi');
     return fn(...args);
   };
 }
@@ -83,9 +83,9 @@ function _wrapMakeWASocket() {
   return function makeWASocket(...args) {
     if (_mod) return _mod.default(...args);
     // Kalau belum load, throw — karena makeWASocket tidak async
-    if (_loadError) throw new Error('[ryuhan-baileys] Load failed: ' + _loadError.message);
+    if (_loadError) throw new Error('[yuuki-baileys] Load failed: ' + _loadError.message);
     throw new Error(
-      '[ryuhan-baileys] makeWASocket dipanggil sebelum Baileys selesai load.\n' +
+      '[yuuki-baileys] makeWASocket dipanggil sebelum Baileys selesai load.\n' +
       'Pastikan await useMultiFileAuthState() dulu (itu sudah cukup untuk menunggu load).'
     );
   };
@@ -94,10 +94,10 @@ function _wrapMakeWASocket() {
 // ── Lazy getter untuk nilai non-fungsi ────────────────────────────────────────
 function _makeLazyGetter(name) {
   return function() {
-    if (_loadError) throw new Error('[ryuhan-baileys] Load failed: ' + _loadError.message);
+    if (_loadError) throw new Error('[yuuki-baileys] Load failed: ' + _loadError.message);
     if (_mod) return _mod[name];
     throw new Error(
-      '[ryuhan-baileys] "' + name + '" belum siap. ' +
+      '[yuuki-baileys] "' + name + '" belum siap. ' +
       'Gunakan await useMultiFileAuthState() sebelum akses konstanta ini.'
     );
   };
