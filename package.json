@@ -1,7 +1,7 @@
 {
   "name": "@yuuki/baileys",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.3",
   "description": "Yuuki Baileys support lid mapping/group session",
   "keywords": [
     "whatsapp",
