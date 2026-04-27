@@ -446,7 +446,7 @@ conn.ev.on('lid-mapping.update', (data) => {
 
 ## 📄 Lisensi
 
-[MIT License](./LICENSE) — Copyright (c) 2025 ryuhan
+[MIT License](./LICENSE) — Copyright (c) 2026 Yuuki Morimiya
 
 ---
 
